@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        h1{
+            text-align: center;
+        }
+        #apple{
+           width: 500px;
+            height: 600px;
+            margin:  100px auto;
+        }
+        .list{
+            margin-top: 20px;
+            width: 500px;
+            height: 60px;
+            background-color: #ccc;
+        }
+        .product-name{
+           float: left;
+          }
+        .product-price{
+            float: right;
+        }
+
+        .list.red {
+            background: #ff0000;
+        }
+    </style>
+</head>
+<body>
+<div id="apple">
+    <h1>购物清单</h1>
+    <hr>
+    <ul>
+        <li class="list" v-for=" ( production,index ) in product" @click="select(production)" :class="{red:production.isRed}">
+            <span class="product-name"> {{production.name}}</span>
+            <span class="product-price">{{production.price}}</span>
+        </li>
+    </ul>
+    <div id="total">
+        总价为 ：{{}}
+    </div>
+</div>
+<script src="vue.js"></script>
+<script>
+var vm = new Vue({
+    el: '#apple',
+    data: {
+     product: [
+         {
+             name: '鞋子',
+             price: '200',
+             isRed: false
+         }, {
+             name: '手机',
+             price: '3000',
+             isRed:false
+         }, {
+             name: '羽绒服',
+             price: '800',
+             isRed: false
+         }, {
+             name: '口罩',
+             price:'1',
+             isRed:false
+         }, {
+             name:'圆珠笔',
+             price:'2',
+             isRed:false
+         }
+     ]
+    },
+    methods: {
+          select:function (product) {
+    product.isRed = !product.isRed ;
+              if(product.isRed){
+                  this.total += parseInt(production.price);
+              }else{
+                  this.total -= parseInt(production.price);
+              }
+}
+    }
+});
+</script>
+</body>
+</html>
