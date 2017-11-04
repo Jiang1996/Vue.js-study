@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style></style>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        #Go{
+            width: 400px;
+            margin: 100px auto;
+        }
+        #Go h1{
+            text-align: center;
+        }
+        #list li{
+            height: 50px;
+            background-color: #cccccc;
+            margin-top: 20px;
+            line-height: 50px;
+            padding: 0 10px;
+            cursor: pointer;
+        }
+        .product-name{
+            float: left;
+        }
+        .product-price{
+            float: right;
+        }
+        #list .red{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="Go">
+<h1>购物清单</h1>
+    <hr>
+    <ul id="list">
+        <li  v-for="product in production" @click="select(product)" :class="{red:product.isRed}">
+            <span class="product-name">{{product.name}}</span>
+            <span class="product-price">{{product.price}}</span>
+        </li>
+    </ul>
+    <div id="total">
+        总价：{{total}}
+    </div>
+</div>
+<script src="vue.js"></script>
+<script>
+    new Vue({
+      el: '#Go'  ,
+        data: {
+          production:[
+              {
+                  name: '羽绒服',
+                  price:'600',
+                  isRed:false
+              }, {
+                  name: '棉裤',
+                  price:'200',
+                  isRed:false
+              }, {
+                  name: '手套',
+                  price:'100',
+                  isRed:false
+              }, {
+                  name: '保暖鞋',
+                  price:'500',
+                  isRed:false
+              }, {
+                  name: '口罩',
+                  price:'20',
+                  isRed:false
+              }, {
+                  name: 'iphoneX',
+                  price:'10000',
+                  isRed:false
+              }
+          ],
+         total:0
+        },
+        methods:{
+          select:function (product) {
+              product.isRed = ! product.isRed;
+              if(product.isRed) {
+                  this.total += parseInt(product.price);
+              }else{
+                  this.total -= parseInt(product.price);
+              }
+          }
+        }
+    });
+</script>
+</body>
+</html>
