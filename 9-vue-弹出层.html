@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+
+
+</style>
+<body>
+<div id="peach">
+    <button @click="">登陆</button>
+    <button @click="">注册</button>
+
+    <template id="dialog">
+        <div class="dialog-mask">
+            <div class="dialog-box">
+                <div class="dialog-title">
+                    <span class="dialog-title-item">
+                        <slot name="item"></slot>
+                    </span>
+                    <span class="dialog-title-close" @click="$emit('close')">[X]</span>
+                </div>
+                <div class="dialog-content">
+                    <slot name="content">默认值</slot>
+                </div>
+            </div>
+        </div>
+    </template>
+</div>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+       el : '#peach' ,
+        data : {
+
+        },
+        components:{
+           myDialog:{
+              template:'dialog'
+           }
+        }
+    });
+
+</script>
+</body>
+</html>
